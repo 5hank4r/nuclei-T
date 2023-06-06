@@ -1,0 +1,29 @@
+id: Xss_Scanner
+
+info:
+  name: Possbile XSS
+  author: shankar acharya (sank)
+  severity: medium
+  description: |
+       Possible xss 
+  reference: |
+    - https://www.exploit-db.com/exploits/37481
+  tags: wordpress,xss,wp-plugin
+
+requests:
+  - method: GET
+    path:
+      - '{{BaseURL}}/search?q=test""%2F'
+    matchers-condition: and
+    matchers:
+      - type: word
+        part: body
+        words:
+          - 'test'
+      - type: word
+        part: header
+        words:
+          - "text/html"
+      - type: status
+        status:
+          - 200
