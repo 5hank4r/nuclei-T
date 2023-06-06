@@ -1,25 +1,23 @@
-id: Xss_Scanner
+id: xss-detection
 
 info:
-  name: Possbile XSS
-  author: shankar acharya (sank)
+  name: Possible XSS detection
+  author: Shankar Acharya (sank)
   severity: medium
   description: |
-       Possible xss 
-  reference: |
-    - https://www.exploit-db.com/exploits/37481
-  tags: wordpress,xss,wp-plugin
+    SocialFit plugin for WordPress is prone to a cross-site scripting vulnerability because it fails to properly sanitize user-supplied input.
+
 
 requests:
   - method: GET
     path:
-      - '{{BaseURL}}/search?q=test""%2F'
+      - '{{BaseURL}}/search?q=test%22%27'
     matchers-condition: and
     matchers:
       - type: word
         part: body
         words:
-          - 'test'
+          - 'test"'''
       - type: word
         part: header
         words:
