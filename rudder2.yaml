@@ -1,0 +1,25 @@
+id:  Write_Key 
+
+info:
+  name: Rudder Write key
+  author: shankar acharya
+  severity: High
+  reference:
+    - https://www.rudderstack.com/docs/api/http-api/
+    
+
+  metadata:
+    max-request: 1
+    verified: "true"
+  tags: rudder,token,exposure
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    extractors:
+      - type: regex
+        part: body
+        regex:
+          - WRITE_KEY":"[^"]*"
