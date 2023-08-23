@@ -23,3 +23,4 @@ http:
         part: body
         regex:
           - JOTFORM_API_KEY":"[A-Za-z0-9]+"
+          - REACT_APP_TRIAL_PASSWORD:"[A-Za-z0-9]+"
